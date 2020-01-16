@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.http import Http404, HttpResponse
+from django.shortcuts import get_object_or_404, render
+from django.http import HttpResponse
 
 from .models import Food, Diet
 
@@ -15,25 +15,21 @@ def index(request):
 
 
 def detail(request, item_num):
-    # TODO: permalink page for a specific food
-    try:
-        food = Food.objects.get(item_num=item_num)
-        sizes = list()
-        for size, name in [
-            (food.xsm_breed, Food._meta.get_field('xsm_breed').verbose_name),
-            (food.sm_breed, Food._meta.get_field('sm_breed').verbose_name),
-            (food.md_breed, Food._meta.get_field('md_breed').verbose_name),
-            (food.lg_breed, Food._meta.get_field('lg_breed').verbose_name),
-            (food.xlg_breed, Food._meta.get_field('xlg_breed').verbose_name),
-        ]:
-            if size == 1:
-                sizes.append(name.title())
-        context = {
-            'food': food,
-            'breed_sizes': ', '.join(sizes)
-        }
-    except Food.DoesNotExist:
-        raise Http404("Food does not exist")
+    food = get_object_or_404(Food, item_num=item_num)
+    sizes = list()
+    for size, name in [
+        (food.xsm_breed, Food._meta.get_field('xsm_breed').verbose_name),
+        (food.sm_breed, Food._meta.get_field('sm_breed').verbose_name),
+        (food.md_breed, Food._meta.get_field('md_breed').verbose_name),
+        (food.lg_breed, Food._meta.get_field('lg_breed').verbose_name),
+        (food.xlg_breed, Food._meta.get_field('xlg_breed').verbose_name),
+    ]:
+        if size == 1:
+            sizes.append(name.title())
+    context = {
+        'food': food,
+        'breed_sizes': ', '.join(sizes)
+    }
     return render(request, 'food_search/detail.html', context)
 
 
