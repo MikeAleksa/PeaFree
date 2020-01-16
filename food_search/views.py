@@ -35,7 +35,10 @@ def detail(request, item_num):
 
 def results(request):
     # TODO: results of a search
-    pass
+    context = {
+        'results': Food.objects.all()
+    }
+    return render(request, 'food_search/results.html', context)
 
 
 def about(request):
