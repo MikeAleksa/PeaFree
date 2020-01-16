@@ -1,6 +1,52 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import Http404, HttpResponse
 
-# Create your views here.
+from .models import Food, Diet
+
+
 def index(request):
-    return HttpResponse("Hello World, from the Search index.")
+    context = {
+        'food_count': Food.objects.count(),
+        'good_count': Food.objects.filter(fda_guidelines=1).count(),
+    }
+    # TODO: last updated
+    # TODO: search functionality
+    return render(request, 'food_search/index.html', context)
+
+
+def detail(request, item_num):
+    # TODO: permalink page for a specific food
+    try:
+        food = Food.objects.get(item_num=item_num)
+        sizes = list()
+        for size, name in [
+            (food.xsm_breed, Food._meta.get_field('xsm_breed').verbose_name),
+            (food.sm_breed, Food._meta.get_field('sm_breed').verbose_name),
+            (food.md_breed, Food._meta.get_field('md_breed').verbose_name),
+            (food.lg_breed, Food._meta.get_field('lg_breed').verbose_name),
+            (food.xlg_breed, Food._meta.get_field('xlg_breed').verbose_name),
+        ]:
+            if size == 1:
+                sizes.append(name.title())
+        context = {
+            'food': food,
+            'breed_sizes': ', '.join(sizes)
+        }
+    except Food.DoesNotExist:
+        raise Http404("Food does not exist")
+    return render(request, 'food_search/detail.html', context)
+
+
+def results(request):
+    # TODO: results of a search
+    pass
+
+
+def about(request):
+    # TODO: about the site
+    return HttpResponse('Information about application here.')
+
+
+def disclaimer(request):
+    # TODO: about the site
+    return HttpResponse('Disclaimer: use this information at your own discretion. It is not guaranteed to be correct.')
