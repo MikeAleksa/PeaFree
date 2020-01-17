@@ -1,25 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ food.name }}</title>
-</head>
-<body>
-    <h1>{{ food.name }}</h1>
-    <b>Brand</b>: {{ food.brand }}
-    <br><br>
-    <b>Item Number</b>: {{ food.item_num }}
-    <br><br>
-    <b>URL:</b> <a href="{{ food.url }}">{{ food.url }}</a>
-    <br><br>
-    <b>Ingredients:</b> {{ food.ingredients }}
-    <br><br>
-    <b>Breed Sizes:</b> {{ breed_sizes }}
-    <br><br>
-    <b>Food Form:</b> {{ food.food_form }}
-    <br><br>
-    <b>Lifestage:</b> {{ food.lifestage }}
-    <br><br>
-    <b>Meets FDA Guidelines:</b> {{ food.fda_guidelines }}
-</body>
-</html>
+{% extends "food_search/default_template.html" %}
+
+{% block title %}PeaFree! - {{ food.name }}{% endblock %}
+
+{% block heading %}
+    <a class="navbar-brand js-scroll-trigger" href="{% url 'food_search:index' %}">PeaFree!</a>
+{% endblock %}
+
+{% block contentheader %}
+    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0 mt-4">
+        {{ food.name }}
+    </h2>
+
+{% endblock %}
+
+{% block content %}
+    <p class="lead">
+        <b>Brand</b>: {{ food.brand }}
+        <br><br>
+        <b>Item Number</b>: {{ food.item_num }}
+        <br><br>
+        <b>URL:</b> <a href="{{ food.url }}">{{ food.url }}</a>
+        <br><br>
+        <b>Ingredients:</b> {{ food.ingredients }}
+        <br><br>
+        <b>Breed Sizes:</b> {{ breed_sizes }}
+        <br><br>
+        <b>Food Form:</b> {{ food.food_form }}
+        <br><br>
+        <b>Lifestage:</b> {{ food.lifestage }}
+        <br><br>
+        <b>Meets FDA Guidelines:</b> {{ food.fda_guidelines }}
+    </p>
+{% endblock %}

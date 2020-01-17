@@ -1,16 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Dog Food Search</title>
-</head>
-<body>
-    The database contains information about {{ food_count }} foods from Chewy.com.
+{% extends "food_search/default_template.html" %}
+{% load static %}
+
+{% block title %}PeaFree!{% endblock %}
+
+{% block masthead %}
+    <!-- Masthead -->
+    <header class="masthead bg-primary text-white text-center">
+        <div class="container d-flex align-items-center flex-column">
+
+            <!-- Masthead Avatar Image -->
+            <img class="masthead-avatar mb-5" src="{% static 'img/dog_avatar.svg' %}" alt="">
+
+            <!-- Masthead Heading -->
+            <h1 class="masthead-heading text-uppercase mb-0">Does Your Dogfood Meet FDA Guidelines?</h1>
+
+            <!-- Icon Divider -->
+            <div class="divider-custom divider-light">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="divider-custom-line"></div>
+            </div>
+
+            <!-- Masthead Subheading -->
+            <p class="masthead-subheading font-weight-light mb-0">No Peas - Legumes - Potatoes - Seeds</p>
+
+        </div>
+    </header>
+{% endblock %}
+
+{% block contentheader %}
+    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Search For a Food</h2>
+{% endblock %}
+
+{% block content %}
+<p class="lead text-center">
+    The database contains information about <b>{{ food_count }}</b> foods from Chewy.com.
     <br><br>
-    {{ good_count }} of these foods meet the new FDA guidelines regarding legumes, pulses, and potatoes.
+    <b>{{ good_count }}</b> of these foods meet the new FDA guidelines regarding legumes, pulses, and potatoes.
     <br><br>
     The database was last updated on {{ update.date__max }}
     <br><br>
     <a href="{% url 'food_search:results' %}">See Results</a>
-</body>
-</html>
+</p>
+{% endblock %}
