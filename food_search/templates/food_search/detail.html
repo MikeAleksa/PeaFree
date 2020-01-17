@@ -1,4 +1,4 @@
-{% extends "food_search/default_template.html" %}
+{% extends "food_search/subpage_template.html" %}
 
 {% block title %}PeaFree! - {{ food.name }}{% endblock %}
 
@@ -15,20 +15,20 @@
 
 {% block content %}
     <p class="lead">
-        <b>Brand</b>: {{ food.brand }}
+        <b class="font-weight-bold">Brand</b>: {{ food.brand }}
         <br><br>
-        <b>Item Number</b>: {{ food.item_num }}
+        <b class="font-weight-bold">Item Number</b>: {{ food.item_num }}
         <br><br>
-        <b>URL:</b> <a href="{{ food.url }}">{{ food.url }}</a>
+        <b class="font-weight-bold">URL:</b> <a href="{{ food.url }}">{{ food.url }}</a>
         <br><br>
-        <b>Ingredients:</b> {{ food.ingredients }}
+        <b class="font-weight-bold">Ingredients:</b> {{ food.ingredients }}
         <br><br>
-        <b>Breed Sizes:</b> {{ breed_sizes }}
+        <b class="font-weight-bold">Breed Sizes:</b> {{ breed_sizes }}
         <br><br>
-        <b>Food Form:</b> {{ food.food_form }}
+        <b class="font-weight-bold">Food Form:</b> {{ food.food_form }}
         <br><br>
-        <b>Lifestage:</b> {{ food.lifestage }}
+        <b class="font-weight-bold">Lifestage:</b> {{ food.lifestage }}
         <br><br>
-        <b>Meets FDA Guidelines:</b> {{ food.fda_guidelines }}
+        <b class="font-weight-bold">Meets FDA Guidelines:</b> {{ food.fda_guidelines }}
     </p>
 {% endblock %}

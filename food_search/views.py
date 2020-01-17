@@ -37,7 +37,7 @@ def detail(request, item_num):
 def results(request):
     # TODO: results of a search
     context = {
-        'results': Food.objects.all().order_by('name')
+        'results': Food.objects.all().order_by('name').filter(fda_guidelines=True)
     }
     return render(request, 'food_search/results.html', context)
 

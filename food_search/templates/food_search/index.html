@@ -1,4 +1,4 @@
-{% extends "food_search/default_template.html" %}
+{% extends "food_search/index_template.html" %}
 {% load static %}
 
 {% block title %}PeaFree!{% endblock %}
@@ -24,7 +24,7 @@
             </div>
 
             <!-- Masthead Subheading -->
-            <p class="masthead-subheading font-weight-light mb-0">No Peas - Legumes - Potatoes - Seeds</p>
+            <p class="masthead-subheading font-weight-light mb-0">No Peas - No Legumes - No Potatoes - No Seeds</p>
 
         </div>
     </header>
@@ -36,9 +36,9 @@
 
 {% block content %}
 <p class="lead text-center">
-    The database contains information about <b>{{ food_count }}</b> foods from Chewy.com.
+    The database contains information about <b class="font-weight-bold">{{ food_count }}</b> foods from Chewy.com.
     <br><br>
-    <b>{{ good_count }}</b> of these foods meet the new FDA guidelines regarding legumes, pulses, and potatoes.
+    <b class="font-weight-bold">{{ good_count }}</b> of these foods meet the new FDA guidelines regarding legumes, pulses, and potatoes.
     <br><br>
     The database was last updated on {{ update.date__max }}
     <br><br>
