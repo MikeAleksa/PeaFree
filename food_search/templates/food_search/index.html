@@ -1,38 +1,8 @@
 {% extends "food_search/index_template.html" %}
-{% load static %}
 
 {% block title %}PeaFree!{% endblock %}
 
-{% block masthead %}
-    <!-- Masthead -->
-    <header class="masthead bg-primary text-white text-center">
-        <div class="container d-flex align-items-center flex-column">
-
-            <!-- Masthead Avatar Image -->
-            <img class="masthead-avatar mb-5" src="{% static 'img/dog_avatar.svg' %}" alt="">
-
-            <!-- Masthead Heading -->
-            <h1 class="masthead-heading text-uppercase mb-0">Does Your Dogfood Meet FDA Guidelines?</h1>
-
-            <!-- Icon Divider -->
-            <div class="divider-custom divider-light">
-                <div class="divider-custom-line"></div>
-                <div class="divider-custom-icon">
-                    <i class="fas fa-star"></i>
-                </div>
-                <div class="divider-custom-line"></div>
-            </div>
-
-            <!-- Masthead Subheading -->
-            <p class="masthead-subheading font-weight-light mb-0">No Peas - No Legumes - No Potatoes - No Seeds</p>
-
-        </div>
-    </header>
-{% endblock %}
-
-{% block contentheader %}
-    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Search For a Food</h2>
-{% endblock %}
+{% block contenttitle %}Search For a Food{% endblock %}
 
 {% block content %}
 <p class="lead text-center">

@@ -2,15 +2,7 @@
 
 {% block title %}PeaFree! - {{ results.count }} Search Results{% endblock %}
 
-{% block heading %}
-    <a class="navbar-brand js-scroll-trigger" href="{% url 'food_search:index' %}">PeaFree!</a>
-{% endblock %}
-
-{% block contentheader %}
-    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0 mt-4">
-        Displaying Results for {{ results.count }} Dog Foods
-    </h2>
-{% endblock %}
+{% block contenttitle %}Displaying Results for {{ results.count }} Dog Foods{% endblock %}
 
 {% block content %}
 

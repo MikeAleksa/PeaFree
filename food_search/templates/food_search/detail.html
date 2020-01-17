@@ -2,16 +2,7 @@
 
 {% block title %}PeaFree! - {{ food.name }}{% endblock %}
 
-{% block heading %}
-    <a class="navbar-brand js-scroll-trigger" href="{% url 'food_search:index' %}">PeaFree!</a>
-{% endblock %}
-
-{% block contentheader %}
-    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0 mt-4">
-        {{ food.name }}
-    </h2>
-
-{% endblock %}
+{% block contenttitle %}{{ food.name }}{% endblock %}
 
 {% block content %}
     <p class="lead">
