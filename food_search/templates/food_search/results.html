@@ -7,7 +7,7 @@
 <body>
     <ul>
     {% for result in results %}
-        <li><a href="{% url 'food_search:detail' result.item_num %}">{{ result.item_num }}</a></li>
+        <li><a href="{% url 'food_search:detail' result.item_num %}">{{ result.name }}</a></li>
     {% endfor %}
     </ul>
 </body>

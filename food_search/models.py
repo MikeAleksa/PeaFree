@@ -8,6 +8,7 @@ class Food(models.Model):
 
     item_num = models.IntegerField('item number', primary_key=True)
     url = models.CharField('URL', max_length=200, unique=True)
+    name = models.CharField('name', max_length=1000)
     ingredients = models.CharField('ingredients', max_length=4096, null=False)
     brand = models.CharField('brand', max_length=200, null=True)
     xsm_breed = models.BooleanField('extra small & toy breeds')
@@ -27,3 +28,11 @@ class Diet(models.Model):
 
     diet = models.CharField('diet', max_length=200)
     item_num = models.ForeignKey(Food, on_delete=models.CASCADE)
+
+
+class ScraperUpdates(models.Model):
+
+    def __str__(self):
+        return 'Database last updated on {}'.format(self.date)
+
+    date = models.DateTimeField('last update')

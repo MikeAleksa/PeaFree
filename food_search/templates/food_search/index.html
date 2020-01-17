@@ -5,8 +5,12 @@
     <title>Dog Food Search</title>
 </head>
 <body>
-The database contains information about {{ food_count }} foods from Chewy.com.
-<br>
-{{ good_count }} of these foods meet the new FDA guidelines regarding legumes, pulses, and potatoes.
+    The database contains information about {{ food_count }} foods from Chewy.com.
+    <br><br>
+    {{ good_count }} of these foods meet the new FDA guidelines regarding legumes, pulses, and potatoes.
+    <br><br>
+    The database was last updated on: {{ update }}
+    <br><br>
+    <a href="{% url 'food_search:results' %}">See Results</a>
 </body>
 </html>

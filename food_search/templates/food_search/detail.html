@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ food.url }}</title>
+    <title>{{ food.name }}</title>
 </head>
 <body>
+    <h1>{{ food.name }}</h1>
+    <b>Brand</b>: {{ food.brand }}
+    <br><br>
     <b>Item Number</b>: {{ food.item_num }}
     <br><br>
     <b>URL:</b> <a href="{{ food.url }}">{{ food.url }}</a>

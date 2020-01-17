@@ -1,13 +1,15 @@
+from django.db.models import Max
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 
-from .models import Food, Diet
+from .models import Food, Diet, ScraperUpdates
 
 
 def index(request):
     context = {
         'food_count': Food.objects.count(),
         'good_count': Food.objects.filter(fda_guidelines=1).count(),
+        'update': ScraperUpdates.objects.all().aggregate(Max('date')),
     }
     # TODO: last updated
     # TODO: search functionality
@@ -36,7 +38,7 @@ def detail(request, item_num):
 def results(request):
     # TODO: results of a search
     context = {
-        'results': Food.objects.all()
+        'results': Food.objects.all().order_by('name')
     }
     return render(request, 'food_search/results.html', context)
 
