@@ -16,8 +16,10 @@
         <br><br>
         <b class="font-weight-bold">Food Form:</b> {{ food.food_form }}
         <br><br>
+        {% if diets != None %}
         <b class="font-weight-bold">Special Diets:</b> {{ diets }}
         <br><br>
+        {% endif %}
         <b class="font-weight-bold">Lifestage:</b> {{ food.lifestage }}
         <br><br>
         <b class="font-weight-bold">Meets FDA Guidelines:</b>

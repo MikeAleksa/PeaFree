@@ -16,7 +16,10 @@ def index(request):
 
 def detail(request, item_num):
     food = get_object_or_404(Food, item_num=item_num)
-    diets = get_list_or_404(Diet, item_num=item_num)
+    diets = Diet.objects.all().filter(item_num=item_num)
+    diets = ', '.join([d.diet for d in diets])
+    if diets == str():
+        diets = None
     sizes = list()
     for size, name in [
         (food.xsm_breed, Food._meta.get_field('xsm_breed').verbose_name),
@@ -30,7 +33,7 @@ def detail(request, item_num):
     context = {
         'food': food,
         'breed_sizes': ', '.join(sizes),
-        'diets': ', '.join([d.diet for d in diets]),
+        'diets': diets,
     }
     return render(request, 'food_search/detail.html', context)
 
