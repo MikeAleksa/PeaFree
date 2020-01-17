@@ -40,13 +40,3 @@ def results(request):
         'results': Food.objects.all().order_by('name').filter(fda_guidelines=True)
     }
     return render(request, 'food_search/results.html', context)
-
-
-def about(request):
-    # TODO: about the site
-    return HttpResponse('Information about application here.')
-
-
-def disclaimer(request):
-    # TODO: about the site
-    return HttpResponse('Disclaimer: use this information at your own discretion. It is not guaranteed to be correct.')
