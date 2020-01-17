@@ -1,6 +1,5 @@
 from django.db.models import Max
-from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponse
+from django.shortcuts import get_list_or_404, get_object_or_404, render
 
 from .models import Food, Diet, ScraperUpdates
 
@@ -17,6 +16,7 @@ def index(request):
 
 def detail(request, item_num):
     food = get_object_or_404(Food, item_num=item_num)
+    diets = get_list_or_404(Diet, item_num=item_num)
     sizes = list()
     for size, name in [
         (food.xsm_breed, Food._meta.get_field('xsm_breed').verbose_name),
@@ -29,7 +29,8 @@ def detail(request, item_num):
             sizes.append(name.title())
     context = {
         'food': food,
-        'breed_sizes': ', '.join(sizes)
+        'breed_sizes': ', '.join(sizes),
+        'diets': ', '.join([d.diet for d in diets]),
     }
     return render(request, 'food_search/detail.html', context)
 
