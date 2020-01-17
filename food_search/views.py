@@ -11,7 +11,6 @@ def index(request):
         'good_count': Food.objects.filter(fda_guidelines=1).count(),
         'update': ScraperUpdates.objects.all().aggregate(Max('date')),
     }
-    # TODO: last updated
     # TODO: search functionality
     return render(request, 'food_search/index.html', context)
 

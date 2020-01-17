@@ -9,7 +9,7 @@
     <br><br>
     {{ good_count }} of these foods meet the new FDA guidelines regarding legumes, pulses, and potatoes.
     <br><br>
-    The database was last updated on: {{ update }}
+    The database was last updated on {{ update.date__max }}
     <br><br>
     <a href="{% url 'food_search:results' %}">See Results</a>
 </body>
