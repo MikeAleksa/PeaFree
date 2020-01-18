@@ -1,8 +1,8 @@
 {% extends "food_search/subpage_template.html" %}
 
-{% block title %}PeaFree! - {{ results.count }} Search Results{% endblock %}
+{% block title %}PeaFree! - {{ total_results }} Search Results{% endblock %}
 
-{% block contenttitle %}Displaying {{ 1 }} - {{ 1 }} of {{ total_results }} Results{% endblock %}
+{% block contenttitle %}Displaying {{ page_obj.number }} - {{ 1 }} of {{ total_results }} Results{% endblock %}
 
 {% block content %}
     <!-- List of Results -->
@@ -89,7 +89,6 @@
             {% endif %}
             {% if page_obj.has_next %}
                 <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
-
             {% endif %}
         </ul>
     {% endif %}

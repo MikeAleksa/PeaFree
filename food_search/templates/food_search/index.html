@@ -1,4 +1,5 @@
 {% extends "food_search/index_template.html" %}
+{% load humanize %}
 
 {% block title %}PeaFree!{% endblock %}
 
@@ -11,7 +12,7 @@
         <b class="font-weight-bold">{{ good_count }}</b> of these foods meet the new FDA guidelines regarding legumes,
         pulses, and potatoes.
         <br><br>
-        The database was last updated on {{ update.date__max }}
+        The database was last updated {{ update.date__max|naturalday }}
         <br><br>
         <a href="{% url 'food_search:results' %}">See Results</a>
     </p>
