@@ -2,7 +2,7 @@
 
 {% block title %}PeaFree! - {{ results.count }} Search Results{% endblock %}
 
-{% block contenttitle %}Displaying Results for {{ results.count }} Dog Foods{% endblock %}
+{% block contenttitle %}Displaying {{ 1 }} - {{ 1 }} of {{ total_results }} Results{% endblock %}
 
 {% block content %}
     <!-- List of Results -->
@@ -80,5 +80,19 @@
             </div>
         </div>
     {% endfor %}
+
+    {% if is_paginated %}
+        <br>
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+                <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+            {% endif %}
+            {% if page_obj.has_next %}
+                <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+
+            {% endif %}
+        </ul>
+    {% endif %}
+
 
 {% endblock %}

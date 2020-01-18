@@ -4,6 +4,6 @@ from . import views
 
 app_name = 'food_search'
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('results/', views.results, name='results'),
+    path('', views.IndexView.as_view(), name='index'),
+    path('results/', views.ResultsView.as_view(), name='results'),
 ]

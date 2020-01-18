@@ -1,26 +1,22 @@
-from collections import defaultdict
-
 from django.db.models import Max
-from django.shortcuts import get_list_or_404, get_object_or_404, render
+from django.views import generic
 
-from .models import Food, Diet, ScraperUpdates
+from .models import Food, ScraperUpdates
 
 
-def index(request):
-    context = {
+class IndexView(generic.TemplateView):
+    # TODO: add search functionality
+    template_name = 'food_search/index.html'
+    extra_context = {
         'food_count': Food.objects.count(),
         'good_count': Food.objects.filter(fda_guidelines=1).count(),
         'update': ScraperUpdates.objects.all().aggregate(Max('date')),
     }
-    # TODO: search functionality
-    return render(request, 'food_search/index.html', context)
 
 
-def results(request):
-    # TODO: results of a search
-    # TODO: pages of results
-    foods = Food.objects.all().order_by('name').filter(fda_guidelines=True)
-    context = {
-        'results': foods
-    }
-    return render(request, 'food_search/results.html', context)
+class ResultsView(generic.ListView):
+    template_name = 'food_search/results.html'
+    context_object_name = 'results'
+    queryset = Food.objects.all().order_by('name').filter(fda_guidelines=True)
+    extra_context = {'total_results': queryset.count()}
+    paginate_by = 50
