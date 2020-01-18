@@ -2,7 +2,7 @@
 
 {% block title %}PeaFree! - {{ total_results }} Search Results{% endblock %}
 
-{% block contenttitle %}Displaying {{ page_obj.number }} - {{ 1 }} of {{ total_results }} Results{% endblock %}
+{% block contenttitle %}Displaying {{ page_obj.start_index }} - {{ page_obj.end_index }} of {{ total_results }} Results{% endblock %}
 
 {% block content %}
     <!-- List of Results -->
@@ -53,10 +53,12 @@
                                         <br><br>
                                         <b class="font-weight-bold">Food Form:</b> {{ result.food_form }}
                                         <br><br>
-                                        {% if result.diets != None %}
-                                            <b class="font-weight-bold">Special Diets:</b> {{ result.diets }}
-                                            <br><br>
-                                        {% endif %}
+                                        {% with diets=result.diets %}
+                                            {% if diets != None %}
+                                                <b class="font-weight-bold">Special Diets:</b> {{ diets }}
+                                                <br><br>
+                                            {% endif %}
+                                        {% endwith %}
                                         <b class="font-weight-bold">Lifestage:</b> {{ result.lifestage }}
                                         <br><br>
                                         <b class="font-weight-bold">Meets FDA Guidelines:</b>
