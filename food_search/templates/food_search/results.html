@@ -5,11 +5,80 @@
 {% block contenttitle %}Displaying Results for {{ results.count }} Dog Foods{% endblock %}
 
 {% block content %}
+    <!-- List of Results -->
+    <section id="results">
+        <div class="lead">
+            <!-- Result Items -->
+            {% for result in results %}
+                <div class="m-auto align-content-center text-center" data-toggle="modal"
+                     data-target="#resultModel{{ result.item_num }}">
+                    <a href="#">{{ result.name }}</a>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
 
-    <ul>
-        {% for result in results %}
-            <li><a href="{% url 'food_search:detail' result.item_num %}">{{ result.name }}</a></li>
-        {% endfor %}
-    </ul>
+    <!-- Popover Windows For Each Result -->
+    {% for result in results %}
+        <div class="portfolio-modal modal fade" id="resultModel{{ result.item_num }}" tabindex="-1" role="dialog"
+             aria-labelledby="portfolioModal1Label" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            <i class="fas fa-times"></i>
+          </span>
+                    </button>
+                    <div class="modal-body text-center">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title -->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">{{ result.name }}</h2>
+                                    <!-- Icon Divider -->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon">
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Text -->
+                                    <p class="mb-5">
+                                        <b class="font-weight-bold">Brand</b>: {{ result.brand }}
+                                        <br><br>
+                                        <b class="font-weight-bold">Ingredients:</b> {{ result.ingredients }}
+                                        <br><br>
+                                        <b class="font-weight-bold">Breed Sizes:</b> {{ result.breeds }}
+                                        <br><br>
+                                        <b class="font-weight-bold">Food Form:</b> {{ result.food_form }}
+                                        <br><br>
+                                        {% if result.diets != None %}
+                                            <b class="font-weight-bold">Special Diets:</b> {{ result.diets }}
+                                            <br><br>
+                                        {% endif %}
+                                        <b class="font-weight-bold">Lifestage:</b> {{ result.lifestage }}
+                                        <br><br>
+                                        <b class="font-weight-bold">Meets FDA Guidelines:</b>
+                                        {% if result.fda_guidelines == True %}Yes
+                                        {% else %}No
+                                        {% endif %}
+                                        <br><br>
+                                        <b class="font-weight-bold"> <a href="{{ result.url }}" target="_blank">View On
+                                            Chewy.com</a></b>
+                                        <br><br>
+                                    </p>
+                                    <button class="btn btn-primary" href="#" data-dismiss="modal">
+                                        <i class="fas fa-times fa-fw"></i>
+                                        Close Window
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 
 {% endblock %}
