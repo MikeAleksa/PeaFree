@@ -61,9 +61,11 @@
                                         {% endwith %}
                                         <b class="font-weight-bold">Lifestage:</b> {{ result.lifestage }}
                                         <br><br>
-                                        <b class="font-weight-bold">Meets FDA Guidelines:</b>
-                                        {% if result.fda_guidelines == True %}Yes
-                                        {% else %}No
+                                        <b class="font-weight-bold">Meets FDA Guidelines: </b>
+                                        {% if result.fda_guidelines == True %}
+                                            <i class="fas fa-check-circle" style="color:green"></i>
+                                        {% else %}
+                                            <i class="fas fa-times-circle" style="color:red"></i>
                                         {% endif %}
                                         <br><br>
                                         <b class="font-weight-bold"> <a href="{{ result.url }}" target="_blank">View On
@@ -71,7 +73,7 @@
                                         <br><br>
                                     </p>
                                     <button class="btn btn-primary" href="#" data-dismiss="modal">
-                                        <i class="fas fa-times fa-fw"></i>
+                                        <i class="fas fa-times fa-fw""></i>
                                         Close Window
                                     </button>
                                 </div>
