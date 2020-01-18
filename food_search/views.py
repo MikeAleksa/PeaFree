@@ -17,6 +17,6 @@ class IndexView(generic.TemplateView):
 class ResultsView(generic.ListView):
     template_name = 'food_search/results.html'
     context_object_name = 'results'
-    queryset = Food.objects.all().order_by('name').filter(fda_guidelines=True)
+    queryset = Food.objects.filter(fda_guidelines=True).order_by('name')
     extra_context = {'total_results': queryset.count()}
     paginate_by = 50
