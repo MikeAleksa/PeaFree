@@ -46,6 +46,13 @@
                                     </div>
                                     <!-- Portfolio Modal - Text -->
                                     <p class="mb-5">
+                                        <b class="font-weight-bold">Meets FDA Guidelines: </b>
+                                        {% if result.fda_guidelines == True %}
+                                            <i class="fas fa-check-circle" style="color:green"></i>
+                                        {% else %}
+                                            <i class="fas fa-times-circle" style="color:red"></i>
+                                        {% endif %}
+                                        <br><br>
                                         <b class="font-weight-bold">Brand</b>: {{ result.brand }}
                                         <br><br>
                                         <b class="font-weight-bold">Ingredients:</b> {{ result.ingredients }}
@@ -61,13 +68,6 @@
                                             {% endif %}
                                         {% endwith %}
                                         <b class="font-weight-bold">Lifestage:</b> {{ result.lifestage }}
-                                        <br><br>
-                                        <b class="font-weight-bold">Meets FDA Guidelines: </b>
-                                        {% if result.fda_guidelines == True %}
-                                            <i class="fas fa-check-circle" style="color:green"></i>
-                                        {% else %}
-                                            <i class="fas fa-times-circle" style="color:red"></i>
-                                        {% endif %}
                                         <br><br>
                                         <b class="font-weight-bold"> <a href="{{ result.url }}" target="_blank">View On
                                             Chewy.com</a></b>
