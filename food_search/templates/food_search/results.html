@@ -1,6 +1,6 @@
 {% extends "food_search/subpage_template.html" %}
 
-{% block title %}PeaFree! - {{ total_results }} Search Results{% endblock %}
+{% block title %}PeaFree! - {{ paginator.count }} Search Results{% endblock %}
 
 {% block contenttitle %}Results {{ page_obj.start_index }} - {{ page_obj.end_index }} of
     {{ paginator.count }}{% endblock %}
@@ -90,10 +90,12 @@
         <br>
         <ul class="pagination justify-content-center">
             {% if page_obj.has_previous %}
-                <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+                <li><a href="?q={{ q }}&fda={{ fda }}&page={{ page_obj.previous_page_number }}" class="page-link">&laquo;
+                    PREV </a></li>
             {% endif %}
             {% if page_obj.has_next %}
-                <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+                <li><a href="?q={{ q }}&fda={{ fda }}&page={{ page_obj.next_page_number }}" class="page-link"> NEXT
+                    &raquo;</a></li>
             {% endif %}
         </ul>
     {% endif %}
