@@ -17,13 +17,14 @@
     <div class="row lead text-center">
         <div class="col-lg-8 mx-auto">
             <form id="searchform" action="{% url 'food_search:results' %}" method="get" accept-charset="utf-8">
-                <button class="btn btn-primary" type="submit">
+                <button class="btn focus btn-secondary" type="submit">
                     <i class="fa fa-search"></i>
                 </button>
-                <input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search Foods...">
+                <input class="searchfield btn focus" id="searchbox" name="q" type="text"
+                       placeholder="Search Foods...">
                 <label>
-                    <input class="searchfield" id="fda_checkbox" name="fda" type="checkbox" checked>
                     Follows FDA Recommendations
+                    <input class="searchfield" id="fda_checkbox" name="fda" type="checkbox" checked>
                 </label>
             </form>
         </div>
