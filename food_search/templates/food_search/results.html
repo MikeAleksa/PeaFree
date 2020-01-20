@@ -46,32 +46,35 @@
                                     </div>
                                     <!-- Portfolio Modal - Text -->
                                     <p class="mb-5">
-                                        <b class="font-weight-bold">Meets FDA Guidelines: </b>
-                                        {% if result.fda_guidelines == True %}
-                                            <i class="fas fa-check-circle" style="color:green"></i>
-                                        {% else %}
-                                            <i class="fas fa-times-circle" style="color:red"></i>
-                                        {% endif %}
-                                        <br><br>
-                                        <b class="font-weight-bold">Brand</b>: {{ result.brand }}
-                                        <br><br>
-                                        <b class="font-weight-bold">Ingredients:</b> {{ result.ingredients }}
-                                        <br><br>
-                                        <b class="font-weight-bold">Breed Sizes:</b> {{ result.breeds }}
-                                        <br><br>
-                                        <b class="font-weight-bold">Food Form:</b> {{ result.food_form }}
-                                        <br><br>
+                                    <dl>
+                                        <dt>Meets FDA Guidelines</dt>
+                                        <dl style="font-size:2.5rem">
+                                            {% if result.fda_guidelines == True %}
+                                                <i class="fas fa-check-circle" style="color:green"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red"></i>
+                                            {% endif %}
+                                        </dl>
+                                        <dt>Brand</dt>
+                                        <dl> {{ result.brand }}</dl>
+                                        <dt>Ingredients</dt>
+                                        <dl>{{ result.ingredients }}</dl>
+                                        <dt>Breed Sizes</dt>
+                                        <dl>{{ result.breeds }}</dl>
+                                        <dt>Food Form</dt>
+                                        <dl>{{ result.food_form }}</dl>
                                         {% with diets=result.diets %}
                                             {% if diets != None %}
-                                                <b class="font-weight-bold">Special Diets:</b> {{ diets }}
-                                                <br><br>
+                                                <dt>Special Diet:</dt>
+                                                <dl>{{ diets }}</dl>
                                             {% endif %}
                                         {% endwith %}
-                                        <b class="font-weight-bold">Lifestage:</b> {{ result.lifestage }}
-                                        <br><br>
-                                        <b class="font-weight-bold"> <a href="{{ result.url }}" target="_blank">View On
-                                            Chewy.com</a></b>
-                                        <br><br>
+                                        <dt>Lifestage</dt>
+                                        <dl>{{ result.lifestage }}</dl>
+                                        <dt><a href="{{ result.url }}" target="_blank">View On
+                                            Chewy.com</a></dt>
+                                        <br>
+                                    </dl>
                                     </p>
                                     <button class="btn btn-primary" href="#" data-dismiss="modal">
                                         <i class="fas fa-times fa-fw"></i>
@@ -88,7 +91,7 @@
 
     {% if is_paginated %}
         <br>
-        <ul class="pagination justify-content-center">
+        <ul class="pagination justify-content-center" id="page-ctrl">
             {% if page_obj.has_previous %}
                 <li><a href="?q={{ q }}&fda={{ fda }}&page={{ page_obj.previous_page_number }}" class="page-link">&laquo;
                     PREV </a></li>
