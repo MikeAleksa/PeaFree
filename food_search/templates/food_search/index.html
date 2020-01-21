@@ -22,15 +22,19 @@
                 <p>{{ form.q }}</p>
                 <p>{{ form.fda.label }}: {{ form.fda }}</p>
                 <p>
-                    <button class="btn btn-outline-secondary" type="submit">Submit</button>
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-check fa-fw"></i>
+                        Submit
+                    </button>
                 </p>
             </form>
             <div class="m-auto align-content-center text-center" data-toggle="modal"
                  data-target="#advancedSearchModel">
-                <p><a href="#">Advanced Search</a></p>
+                <p><a href="#/">Advanced Search</a></p>
             </div>
     </div>
 
+    <!-- advanced search popover -->
     <div class="portfolio-modal modal fade" id="advancedSearchModel" tabindex="-1" role="dialog"
          aria-labelledby="portfolioModal1Label" aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
@@ -59,13 +63,13 @@
                                       method="get"
                                       accept-charset="utf-8" autocomplete="off">
                                     {{ form.as_p }}
-                                    <button class="btn btn-outline-secondary" type="submit">Submit</button>
+                                    <button class="btn btn-primary" type="submit">
+                                        <i class="fas fa-check fa-fw"></i>
+                                        Submit
+                                    </button>
                                 </form>
                                 <br>
-                                <button class="btn btn-primary" href="#" data-dismiss="modal">
-                                    <i class="fas fa-times fa-fw"></i>
-                                    Close Window
-                                </button>
+
                             </div>
                         </div>
                     </div>
