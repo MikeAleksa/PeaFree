@@ -13,7 +13,13 @@
             {% for result in results %}
                 <div class="m-auto align-content-center text-center" data-toggle="modal"
                      data-target="#resultModel{{ result.item_num }}">
-                    <a href="#/">{{ result.name }}</a>
+                    <a href="#/">{{ result.name }}
+                        {% if result.fda_guidelines == True %}
+                            <i class="fas fa-check-circle" style="color:green"></i>
+                        {% else %}
+                            <i class="fas fa-times-circle" style="color:red"></i>
+                        {% endif %}
+                    </a>
                 </div>
             {% endfor %}
         </div>

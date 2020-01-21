@@ -3,5 +3,10 @@
     text-align: center;
     width: 100%;
     align-content: center;
+    outline: none;
+    box-shadow: none;
 }
 
+input[type="text"] {
+    border: none
+}

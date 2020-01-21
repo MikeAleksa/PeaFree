@@ -6,21 +6,23 @@
 {% block contenttitle %}Search For a Food{% endblock %}
 
 {% block content %}
-    <p class="lead text-center">
-        The database contains information about <b class="font-weight-bold">{{ food_count }}</b> foods from Chewy.com.
-        <br><br>
-        <b class="font-weight-bold">{{ good_count }}</b> of these foods meet the new FDA guidelines regarding legumes,
-        pulses, and potatoes.
-        <br><br>
-        The database was last updated {{ update.date__max|naturalday }}.
-    </p>
+    <div>
+        <p class="lead text-center">
+            The database contains information about <b class="font-weight-bold">{{ food_count }}</b> foods from
+            Chewy.com.
+            <br><br>
+            <b class="font-weight-bold">{{ good_count }}</b> of these foods meet the new FDA guidelines regarding
+            legumes,
+            pulses, and potatoes.
+            <br><br>
+        </p>
+    </div>
 
     <div class="row lead text-center">
         <dt class="col-lg-8 mx-auto">
             <form class="searchform lead text-center" action="{% url 'food_search:results' %}" method="get"
                   accept-charset="utf-8" autocomplete="off">
                 <p>{{ form.q }}</p>
-                <p>{{ form.fda.label }}: {{ form.fda }}</p>
                 <p>
                     <button class="btn btn-primary" type="submit">
                         <i class="fas fa-check fa-fw"></i>
@@ -32,6 +34,12 @@
                  data-target="#advancedSearchModel">
                 <p><a href="#/">Advanced Search</a></p>
             </div>
+    </div>
+
+    <div>
+        <p class="lead text-center small mt-3 mb-auto">
+            <i style="italic">The database was last updated {{ update.date__max|naturalday }}.</i>
+        </p>
     </div>
 
     <!-- advanced search popover -->

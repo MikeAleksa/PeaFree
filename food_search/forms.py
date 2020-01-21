@@ -4,8 +4,9 @@ from .models import Food
 
 
 class SearchForm(forms.Form):
+    # should de-couple CSS from form - how?
     q = forms.CharField(max_length=100, required=False, label='',
-                        widget=forms.TextInput(attrs={'class': 'searchbar rounded btn-lg',
+                        widget=forms.TextInput(attrs={'class': 'searchbar border-bottom',
                                                       'placeholder': 'Search...'}))
     fda = forms.BooleanField(required=False, label='Meets FDA Guidelines', initial=True)
     xsm = forms.BooleanField(required=False, label='Extra Small & Toy Breeds')
