@@ -1,7 +1,5 @@
 from django import forms
 
-from .models import Food
-
 
 class SearchForm(forms.Form):
     # should de-couple CSS from form - how?
@@ -15,5 +13,5 @@ class SearchForm(forms.Form):
     lg = forms.BooleanField(required=False, label='Large Breeds')
     xlg = forms.BooleanField(required=False, label='Giant Breeds')
 
-    food_forms = Food.objects.order_by('food_form').values_list('food_form', flat=True).distinct()
-    food_form = forms.ChoiceField(required=False, choices=enumerate(food_forms))
+    # food_forms = Food.objects.order_by('food_form').values_list('food_form', flat=True).distinct()
+    # food_form = forms.ChoiceField(required=False, choices=enumerate(food_forms))
