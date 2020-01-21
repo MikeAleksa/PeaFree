@@ -16,11 +16,17 @@
     </p>
     <div class="row lead text-center">
         <div class="col-lg-8 mx-auto">
-            <form id="searchform" action="{% url 'food_search:results' %}" method="get" accept-charset="utf-8">
-                <button class="btn focus btn-secondary" type="submit">
-                    <i class="fa fa-search"></i>
-                </button>
-                {{ form }}
+            <form id="searchform lead text-center" action="{% url 'food_search:results' %}" method="get"
+                  accept-charset="utf-8">
+                <div>
+                    <button class="btn focus btn-secondary" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                    {{ form.q }}
+                </div>
+                <div class="lead">Meets FDA Guidelines: {{ form.fda }}</div>
+                <div class="lead">Breed Size: {{ form.breed_size }}</div>
+
             </form>
         </div>
     </div>
