@@ -6,8 +6,9 @@
     <nav class="navbar navbar-expand-lg bg-secondary fixed-top" id="mainNav">
         <div class="container">
             <a class="navbar-brand js-scroll-trigger" href="#page-top">
-                <span style="font-family:'Damion',cursive;font-weight:lighter;letter-spacing:.15rem;font-size-adjust:.3">
-                    Pea<span class="text-primary">Free</span>!
+                <span style="font-family:'Damion',cursive;font-weight:lighter;letter-spacing:.15rem;font-size-adjust:.3;text-shadow: 1px 2px 0px #1abc9c">
+{#                    Pea<span class="text-primary" style="text-shadow: 1px 2px 0px #fff">Free</span>!#}
+                    PeaFree!
                 </span>
             </a>
             <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
@@ -116,40 +117,41 @@
             <!-- About Section Content -->
             <div class="row">
                 <div class="m-auto align-content-center">
-                    <p class="lead text-center">My vet recently cautioned me against grain-free diets and directed me to
-                        a recent
-                        (2019) FDA study that indicates these diets may cause Canine Dilated Cardiomyopathy (DCM). This
-                        website utilizes
-                        data scraped from Chewy.com to see which foods meet these new
-                        guidelines - no peas, no potatoes, no legumes, and no pulses.</p>
+                    <p class="lead text-center">My vet recently cautioned me against grain-free diets after a recent
+                        FDA investigation into these foods, which indicates some of their main ingredients may be
+                        responsible for a rise in cases of Canine Dilated Cardiomyopathy (DCM), a type of heart disease
+                        in dogs. This website utilizes data scraped from Chewy.com to see which dog foods meet the FDA's
+                        new recommendations - no peas, no potatoes, no legumes, and no pulses.
+                    </p>
                 </div>
                 <div class="m-auto align-content-center">
                     <p class="lead text-center">
-                        The FDA study can be found
+                        The FDA's announcement can be found
                         <a class="text-secondary"
-                           href="https://wayback.archive-it.org/7993/20190423043549/https://www.fda.gov/AnimalVeterinary/NewsEvents/ucm630993.htm">here</a>
+                           href="https://wayback.archive-it.org/7993/20190423043549/https://www.fda.gov/AnimalVeterinary/NewsEvents/ucm630993.htm"
+                           target="_blank">here</a>
                         and is summarized <a class="text-secondary"
-                                             href="https://wayback.archive-it.org/7993/20190423023017/https://www.fda.gov/AnimalVeterinary/ResourcesforYou/AnimalHealthLiteracy/ucm616279.htm">here</a>.
-                        <br><br>Key points from the FDA's summary:
-                    <ul class="lead">
-                        <li>The FDA is cautioning against feeding dogs food that contains legumes, pulses (seeds of
-                            legumes), and/or (sweet) potatoes as main ingredients in the food<br><br>
-                        </li>
-                        <li>Main ingredients are defined as ingredients that appear in a food's ingredient list before
-                            the first appearance of a vitamin or mineral ingredient.<br><br>
-                        </li>
-                        <li>Common legumes include peas, beans, lentils, chickpeas, soybeans and peanuts. Pulses are dry
-                            edible seeds of certain legume plants. Examples include dried beans, dried peas, chickpeas
-                            and
-                            lentils.<br><br>
-                        </li>
-                        <li>Rice is a grain, not a legume. The current reports do not suggest there is any link between
-                            diets with rice and DCM in dogs.<br><br>
-                        </li>
-                        <li>Grain-free diets are not necessarily specifically implicated by the study, but recently the
-                            proportion of legumes and/or pulses has increased significantly in these diets.
-                        </li>
-                    </ul>
+                                             href="https://wayback.archive-it.org/7993/20190423023017/https://www.fda.gov/AnimalVeterinary/ResourcesforYou/AnimalHealthLiteracy/ucm616279.htm"
+                                             target="_blank">here</a>.
+                    </p>
+                    <p class="lead text-center font-italic">Key points from the FDA's summary:
+                        <br><br>
+                        The FDA is cautioning against feeding dogs food that contains legumes, pulses (seeds of
+                        legumes), and/or (sweet) potatoes as main ingredients in the food<br><br>
+
+                        Main ingredients are defined as ingredients that appear in a food's ingredient list before
+                        the first appearance of a vitamin or mineral ingredient.<br><br>
+
+                        Common legumes include peas, beans, lentils, chickpeas, soybeans and peanuts. Pulses are dry
+                        edible seeds of certain legume plants. Examples include dried beans, dried peas, chickpeas
+                        and lentils.<br><br>
+
+                        Rice is a grain, not a legume. The current reports do not suggest there is any link between
+                        diets with rice and DCM in dogs.<br><br>
+
+                        Grain-free diets are not necessarily specifically implicated by the study, but recently the
+                        proportion of legumes, pulses, and potatoes have increased significantly in these diets.
+
                     </p>
                 </div>
                 <div class="m-auto align-content-center">
@@ -190,7 +192,8 @@
                             href="https://github.com/BlackrockDigital/startbootstrap-freelancer"
                             target="_blank">GitHub</a>.
                         <br><br>
-                        The webscraper that supplies data to PeaFree! runs on Python3, SQLAlchemy, and AWS Lambda.<br>
+                        The webscraper that supplies data to PeaFree! runs on Python3, BeautifulSoup4, and
+                        SQLAlchemy.<br>
                         See the source code on <a href="https://github.com/MikeAleksa/Multithreaded-Chewy-Scraper"
                                                   target="_blank">GitHub</a>.
                     </p>
@@ -199,4 +202,66 @@
 
         </div>
     </section>
+{% endblock %}
+
+{% block footersection %}
+    <!-- Footer -->
+    <footer class="footer text-center" id="contact">
+        <div class="container">
+            <div class="row">
+
+                <!-- Footer Location -->
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <h4 class="text-uppercase mb-4">Contact Me</h4>
+                    <a class="btn btn-outline-light btn-social mx-1"
+                       href="mailto:mtaleksa1@gmail.com?subject=PeaFree!">
+                        <i class="fab fa-fw fa-google"></i>
+                    </a>
+                </div>
+
+                <!-- Footer Social Icons -->
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <h4 class="text-uppercase mb-4">About Me</h4>
+                    <a class="btn btn-outline-light btn-social mx-1"
+                       href="https://www.linkedin.com/in/michael-aleksa/"
+                       target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-fw fa-linkedin-in"></i>
+                    </a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="https://github.com/MikeAleksa"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        <i class="fab fa-fw fa-github"></i>
+                    </a>
+                </div>
+
+                <!-- Footer About Text -->
+                <div class="col-lg-4">
+                    <h4 class="text-uppercase mb-4">Disclaimer</h4>
+                    <p class="small mb-0">
+                        All decisions regarding which food to feed your pet should be made after consulting with
+                        your
+                        veterinarian.
+                        The information contained on this website is not guaranteed to be accurate - if any
+                        inaccuracies
+                        are
+                        found, please contact me with details.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- Copyright Section -->
+    <section class="copyright py-4 text-center text-white">
+        <div class="container">
+            <small>Copyright &copy; Michael Aleksa 2020</small>
+        </div>
+    </section>
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-to-top d-lg-none position-fixed ">
+        <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
 {% endblock %}

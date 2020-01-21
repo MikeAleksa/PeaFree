@@ -25,70 +25,20 @@
 
     <!-- Theme CSS -->
     <link href="{% static '/css/dogfood.min.css' %}" rel="stylesheet">
+    <link href="{% static '/css/search.css' %}" rel="stylesheet">
+
 
 </head>
 
 <body id="page-top">
 
-{% block navigation %}{% endblock %}
-{% block masthead %}{% endblock %}
-{% block contentsection %}{% endblock %}
-{% block aboutsection %}{% endblock %}
-
-<!-- Footer -->
-<footer class="footer text-center" id="contact">
-    <div class="container">
-        <div class="row">
-
-            <!-- Footer Location -->
-            <div class="col-lg-4 mb-5 mb-lg-0">
-                <h4 class="text-uppercase mb-4">Contact Me</h4>
-                <a class="btn btn-outline-light btn-social mx-1" href="mailto:mtaleksa1@gmail.com?subject=PeaFree!">
-                    <i class="fab fa-fw fa-google"></i>
-                </a>
-            </div>
-
-            <!-- Footer Social Icons -->
-            <div class="col-lg-4 mb-5 mb-lg-0">
-                <h4 class="text-uppercase mb-4">About Me</h4>
-                <a class="btn btn-outline-light btn-social mx-1" href="https://www.linkedin.com/in/michael-aleksa/"
-                   target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-fw fa-linkedin-in"></i>
-                </a>
-                <a class="btn btn-outline-light btn-social mx-1" href="https://github.com/MikeAleksa" target="_blank"
-                   rel="noopener noreferrer">
-                    <i class="fab fa-fw fa-github"></i>
-                </a>
-            </div>
-
-            <!-- Footer About Text -->
-            <div class="col-lg-4">
-                <h4 class="text-uppercase mb-4">Disclaimer</h4>
-                <p class="small mb-0">
-                    All decisions regarding which food to feed your pet should be made after consulting with your
-                    veterinarian.
-                    The information contained on this website is not guaranteed to be accurate - if any inaccuracies are
-                    found, please contact me with details.
-                </p>
-            </div>
-
-        </div>
-    </div>
-</footer>
-
-<!-- Copyright Section -->
-<section class="copyright py-4 text-center text-white">
-    <div class="container">
-        <small>Copyright &copy; Michael Aleksa 2020</small>
-    </div>
-</section>
-
-<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
-<div class="scroll-to-top d-lg-none position-fixed ">
-    <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
-        <i class="fa fa-chevron-up"></i>
-    </a>
+<div style="min-height: 100vh">
+    {% block navigation %}{% endblock %}
+    {% block masthead %}{% endblock %}
+    {% block contentsection %}{% endblock %}
+    {% block aboutsection %}{% endblock %}
 </div>
+{% block footersection %}{% endblock %}
 
 <!-- Bootstrap core JavaScript -->
 <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
