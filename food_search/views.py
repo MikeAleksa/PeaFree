@@ -26,11 +26,13 @@ class ResultsView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        # get search variables from current page (i.e. from GET request) - for use in pagination
+        # get search variables from current page (i.e. from GET request) - for use in pagination, so they aren't lost
         search_vars = []
         if self.request.GET.items():
             for key, value in self.request.GET.items():
-                if key != "page":
+                if key == "q":
+                    search_vars.append("{}={}".format(key, '+'.join(value.split())))
+                elif key != "page":
                     search_vars.append("{}={}".format(key, value))
             context['search_vars'] = '&'.join(search_vars)
         return context

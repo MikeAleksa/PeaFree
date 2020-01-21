@@ -14,30 +14,63 @@
         <br><br>
         The database was last updated {{ update.date__max|naturalday }}.
     </p>
+
     <div class="row lead text-center">
         <dt class="col-lg-8 mx-auto">
-            <form id="searchform lead text-center" action="{% url 'food_search:results' %}" method="get"
-                  accept-charset="utf-8">
-                <dl>
-                    <dt></dt>
-                    <dd>
-                        <button class="btn focus btn-secondary" type="submit">
-                            <i class="fa fa-search"></i>
-                        </button>
-                        {{ form.q }}
-                    </dd>
-                    <dt>{{ form.fda.label }} {{ form.fda }}</dt>
-                    <br>
-                    <dt>Breed Sizes</dt>
-                    <dd class="lead">{{ form.xsm.label }} {{ form.xsm }}</dd>
-                    <dd class="lead">{{ form.sm.label }} {{ form.sm }}</dd>
-                    <dd class="lead">{{ form.md.label }} {{ form.md }}</dd>
-                    <dd class="lead">{{ form.lg.label }} {{ form.lg }}</dd>
-                    <dd class="lead">{{ form.xlg.label }} {{ form.xlg }}</dd>
-                    <br>
-                    <dt>Food Form</dt>
-                    <dd>{{ form.food_form }}</dd>
-                </dl>
+            <form class="searchform lead text-center" action="{% url 'food_search:results' %}" method="get"
+                  accept-charset="utf-8" autocomplete="off">
+                <p>{{ form.q }}</p>
+                <p>{{ form.fda.label }}: {{ form.fda }}</p>
+                <p>
+                    <button class="btn btn-outline-secondary" type="submit">Submit</button>
+                </p>
             </form>
+            <div class="m-auto align-content-center text-center" data-toggle="modal"
+                 data-target="#advancedSearchModel">
+                <p><a href="#">Advanced Search</a></p>
+            </div>
+    </div>
+
+    <div class="portfolio-modal modal fade" id="advancedSearchModel" tabindex="-1" role="dialog"
+         aria-labelledby="portfolioModal1Label" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">
+                    <i class="fas fa-times"></i>
+                  </span>
+                </button>
+                <div class="modal-body text-center">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <!-- Portfolio Modal - Title -->
+                                <h2 class="text-secondary text-uppercase mb-0">Advanced Search</h2>
+                                <!-- Icon Divider -->
+                                <div class="divider-custom">
+                                    <div class="divider-custom-line"></div>
+                                    <div class="divider-custom-icon">
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="divider-custom-line"></div>
+                                </div>
+                                <!-- Portfolio Modal - Text -->
+                                <form class="searchform lead text-center" action="{% url 'food_search:results' %}"
+                                      method="get"
+                                      accept-charset="utf-8" autocomplete="off">
+                                    {{ form.as_p }}
+                                    <button class="btn btn-outline-secondary" type="submit">Submit</button>
+                                </form>
+                                <br>
+                                <button class="btn btn-primary" href="#" data-dismiss="modal">
+                                    <i class="fas fa-times fa-fw"></i>
+                                    Close Window
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}

@@ -4,7 +4,9 @@ from .models import Food
 
 
 class SearchForm(forms.Form):
-    q = forms.CharField(max_length=100, required=False, label='', )
+    q = forms.CharField(max_length=100, required=False, label='',
+                        widget=forms.TextInput(attrs={'class': 'searchbar rounded btn-lg',
+                                                      'placeholder': 'Search...'}))
     fda = forms.BooleanField(required=False, label='Meets FDA Guidelines', initial=True)
     xsm = forms.BooleanField(required=False, label='Extra Small & Toy Breeds')
     sm = forms.BooleanField(required=False, label='Small Breeds')
