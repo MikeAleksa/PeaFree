@@ -1,16 +1,16 @@
 from django import forms
 
+from .models import Food
+
 
 class SearchForm(forms.Form):
     q = forms.CharField(max_length=100, required=False, label='', )
-    fda = forms.BooleanField(required=False, label='Meets FDA guidelines', initial=True)
-    # breed_choices = Food.objects.order_by('breed').values_list('breed', flat=True).distinct()
+    fda = forms.BooleanField(required=False, label='Meets FDA Guidelines', initial=True)
+    xsm = forms.BooleanField(required=False, label='Extra Small & Toy Breeds')
+    sm = forms.BooleanField(required=False, label='Small Breeds')
+    md = forms.BooleanField(required=False, label='Medium Breeds')
+    lg = forms.BooleanField(required=False, label='Large Breeds')
+    xlg = forms.BooleanField(required=False, label='Giant Breeds')
 
-    breed_choices = enumerate(['Any',
-                               'Extra Small & Toy Breeds',
-                               'Small Breeds',
-                               'Medium Breeds',
-                               'Large Breeds',
-                               'Giant Breeds',
-                               ])
-    breed_size = forms.ChoiceField(choices=breed_choices)
+    food_forms = Food.objects.order_by('food_form').values_list('food_form', flat=True).distinct()
+    food_form = forms.ChoiceField(choices=enumerate(food_forms))

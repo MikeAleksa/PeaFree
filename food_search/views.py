@@ -23,15 +23,6 @@ class ResultsView(generic.ListView):
     context_object_name = 'results'
     paginate_by = 25
 
-    def get_q(self):
-        return self.request.GET.get('q', None)
-
-    def get_fda(self):
-        return self.request.GET.get('fda', 'on')
-
-    def get_breed_size(self):
-        return self.request.GET.get('breed_size', None)
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
@@ -48,25 +39,25 @@ class ResultsView(generic.ListView):
         queryset = Food.objects.all()
 
         # if a search query was made, split it into words and filter
-        query_list = self.get_q()
+        query_list = self.request.GET.get('q', None)
         if query_list:
             query_list = query_list.split()
             queryset = queryset.filter(reduce(operator.and_, (Q(name__icontains=q) for q in query_list)))
 
         # filter by FDA guidelines
-        if self.get_fda() == 'on':
+        if self.request.GET.get('fda', None) == 'on':
             queryset = queryset.filter(fda_guidelines=True)
 
         # filter by Breeds
-        if self.get_breed_size() == '1':
+        if self.request.GET.get('xsm', None) == 'on':
             queryset = queryset.filter(xsm_breed=True)
-        elif self.get_breed_size() == '2':
+        if self.request.GET.get('sm', None) == 'on':
             queryset = queryset.filter(sm_breed=True)
-        elif self.get_breed_size() == '3':
+        if self.request.GET.get('md', None) == 'on':
             queryset = queryset.filter(md_breed=True)
-        elif self.get_breed_size() == '4':
+        if self.request.GET.get('lg', None) == 'on':
             queryset = queryset.filter(lg_breed=True)
-        elif self.get_breed_size() == '5':
+        if self.request.GET.get('xlg', None) == 'on':
             queryset = queryset.filter(xlg_breed=True)
 
         # return ordered queryset
