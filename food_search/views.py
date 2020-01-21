@@ -21,7 +21,7 @@ class IndexView(generic.TemplateView):
 class ResultsView(generic.ListView):
     template_name = 'food_search/results.html'
     context_object_name = 'results'
-    paginate_by = 35
+    paginate_by = 30
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

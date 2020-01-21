@@ -7,7 +7,7 @@ class SearchForm(forms.Form):
     # should de-couple CSS from form - how?
     q = forms.CharField(max_length=100, required=False, label='',
                         widget=forms.TextInput(attrs={'class': 'searchbar border-bottom',
-                                                      'placeholder': 'Search...'}))
+                                                      'placeholder': 'Search All Foods'}))
     fda = forms.BooleanField(required=False, label='Meets FDA Guidelines')
     xsm = forms.BooleanField(required=False, label='Extra Small & Toy Breeds')
     sm = forms.BooleanField(required=False, label='Small Breeds')
