@@ -26,6 +26,8 @@ class ResultsView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
+        context['form'] = SearchForm(self.request.GET)
+
         # get search variables from current page (i.e. from GET request) - for use in pagination, so they aren't lost
         search_vars = []
         if self.request.GET.items():

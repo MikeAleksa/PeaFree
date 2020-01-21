@@ -6,6 +6,7 @@
 {% block contenttitle %}Search For a Food{% endblock %}
 
 {% block content %}
+    <!-- search box text -->
     <div>
         <p class="lead text-center">
             The database contains information about <b class="font-weight-bold">{{ food_count }}</b> foods from
@@ -18,6 +19,7 @@
         </p>
     </div>
 
+    <!-- search bar -->
     <div class="row lead text-center">
         <dt class="col-lg-8 mx-auto">
             <form class="searchform lead text-center" action="{% url 'food_search:results' %}" method="get"

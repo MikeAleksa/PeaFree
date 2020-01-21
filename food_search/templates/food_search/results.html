@@ -6,6 +6,61 @@
     {{ paginator.count }}{% endblock %}
 
 {% block content %}
+
+    <!-- filter results -->
+    <div class="row lead text-center">
+        <dt class="col-lg-8 mx-auto">
+            <div class="m-auto align-content-center text-center" data-toggle="modal"
+                 data-target="#advancedSearchModel">
+                <p><a href="#/">Filter Results</a></p>
+            </div>
+    </div>
+
+    <!-- advanced search popover -->
+    <div class="portfolio-modal modal fade" id="advancedSearchModel" tabindex="-1" role="dialog"
+         aria-labelledby="portfolioModal1Label" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">
+                    <i class="fas fa-times"></i>
+                  </span>
+                </button>
+                <div class="modal-body text-center">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <!-- Portfolio Modal - Title -->
+                                <h2 class="text-secondary text-uppercase mb-0">Advanced Search</h2>
+                                <!-- Icon Divider -->
+                                <div class="divider-custom">
+                                    <div class="divider-custom-line"></div>
+                                    <div class="divider-custom-icon">
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="divider-custom-line"></div>
+                                </div>
+                                <!-- Portfolio Modal - Text -->
+                                <form class="searchform lead text-center" action="{% url 'food_search:results' %}"
+                                      method="get"
+                                      accept-charset="utf-8" autocomplete="off">
+                                    {{ form.as_p }}
+                                    <button class="btn btn-primary" type="submit">
+                                        <i class="fas fa-check fa-fw"></i>
+                                        Submit
+                                    </button>
+                                </form>
+                                <br>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <!-- List of Results -->
     <section id="results">
         <div>
