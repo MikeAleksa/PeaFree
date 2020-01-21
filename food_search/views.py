@@ -48,7 +48,7 @@ class ResultsView(generic.ListView):
         if self.request.GET.get('fda', None) == 'on':
             queryset = queryset.filter(fda_guidelines=True)
 
-        # filter by Breeds
+        # filter by breed size
         if self.request.GET.get('xsm', None) == 'on':
             queryset = queryset.filter(xsm_breed=True)
         if self.request.GET.get('sm', None) == 'on':
@@ -59,6 +59,14 @@ class ResultsView(generic.ListView):
             queryset = queryset.filter(lg_breed=True)
         if self.request.GET.get('xlg', None) == 'on':
             queryset = queryset.filter(xlg_breed=True)
+
+        # filter by brand
+
+        # filter by food form
+
+        # filter by lifestage
+
+        # filter by special diet
 
         # return ordered queryset
         return queryset.order_by('name')
