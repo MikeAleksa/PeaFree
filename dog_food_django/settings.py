@@ -19,7 +19,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '6o#^&+tu#9j03qvaxfr=dwv(!g2=xz0*l&w5l@9(kp&208l-04')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['peafree-prod.us-east-1.elasticbeanstalk.com',
                  'peafree.info',
