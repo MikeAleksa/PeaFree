@@ -123,18 +123,18 @@
                                         <dd>{{ result.ingredients }}</dd>
                                         <dt>Breed Sizes</dt>
                                         <dd>{{ result.breeds }}</dd>
-                                        <dt>Food Form</dt>
-                                        <dd>{{ result.food_form }}</dd>
-                                        {% with diets=result.diets %}
-                                            {% if diets != None %}
-                                                <dt>Special Diet</dt>
-                                                <dd>{{ diets }}</dd>
-                                            {% endif %}
-                                        {% endwith %}
-                                        <dt>Lifestage</dt>
-                                        <dd>{{ result.lifestage }}</dd>
-                                        <dt><a href="{{ result.url }}" target="_blank">View On
-                                            Chewy.com</a></dt>
+                                    <dt>Food Form</dt>
+                                    <dd>{{ result.food_form }}</dd>
+                                    {% with diets=result.diets %}
+                                        {% if diets != None %}
+                                            <dt>Special Diet</dt>
+                                            <dd>{{ diets }}</dd>
+                                        {% endif %}
+                                    {% endwith %}
+                                    <dt>Lifestage</dt>
+                                    <dd>{{ result.lifestage }}</dd>
+                                    <dt><a href="{{ result.url }}" target="_blank" rel="noreferrer">View On
+                                        Chewy.com</a></dt>
                                     <br>
                                 </dl>
                                     <button class="btn btn-primary" data-dismiss="modal">
