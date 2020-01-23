@@ -14,9 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.http import HttpResponseRedirect
 from django.urls import include, path
 
 urlpatterns = [
+    path('', lambda r: HttpResponseRedirect('search/')),
     path('admin/', admin.site.urls),
     path('search/', include('food_search.urls'))
 ]
