@@ -25,7 +25,8 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 DEBUG = False
 
 ALLOWED_HOSTS = ['peafree-prod.us-east-1.elasticbeanstalk.com',
-                 'peafree.info']
+                 'peafree.info',
+                 '*.peafree.info']
 
 # Application definition
 
