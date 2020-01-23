@@ -1,5 +1,7 @@
 /dogfooddb.cnf
+/dogfooddb-prod.cnf
 # Elastic Beanstalk Files
+.ebextensions/*
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
