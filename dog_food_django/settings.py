@@ -26,7 +26,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['peafree-prod.us-east-1.elasticbeanstalk.com',
                  'peafree.info',
-                 '*.peafree.info']
+                 'www.peafree.info']
 
 # Application definition
 
