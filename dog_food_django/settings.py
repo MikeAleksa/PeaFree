@@ -12,6 +12,23 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
+import requests
+
+
+def get_ec2_instance_ip():
+    """
+    Try to obtain the IP address of the current EC2 instance in AWS
+    """
+    try:
+        ip = requests.get(
+            'http://169.254.169.254/latest/meta-data/local-ipv4',
+            timeout=0.01
+        ).text
+    except requests.exceptions.ConnectionError:
+        return None
+    return ip
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -21,9 +38,11 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+AWS_LOCAL_IP = get_ec2_instance_ip()
 ALLOWED_HOSTS = ['peafree-prod.us-east-1.elasticbeanstalk.com',
                  'peafree.info',
-                 'www.peafree.info']
+                 'www.peafree.info',
+                 AWS_LOCAL_IP]
 
 # Application definition
 INSTALLED_APPS = [
