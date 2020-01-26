@@ -60,3 +60,4 @@ class ScraperUpdates(models.Model):
         return 'Database last updated on {}'.format(self.date)
 
     date = models.DateTimeField('last update')
+    count = models.IntegerField('food count', null=False)
