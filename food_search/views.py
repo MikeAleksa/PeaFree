@@ -75,6 +75,9 @@ class ResultsView(generic.ListView):
             queryset = queryset.filter(food_form=form)
 
         # filter by lifestage
+        if self.request.GET.get('lifestage', str()) != str():
+            lifestage = ' '.join(self.request.GET.get('lifestage').split('+'))
+            queryset = queryset.filter(lifestage__contains=lifestage)
 
         # filter by special diet
 
