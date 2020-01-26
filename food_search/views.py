@@ -60,6 +60,9 @@ class ResultsView(generic.ListView):
         # filter by brand
 
         # filter by food form
+        if self.request.GET.get('food_form', None) != str():
+            form = ' '.join(self.request.GET.get('food_form').split('+'))
+            queryset = queryset.filter(food_form=form)
 
         # filter by lifestage
 

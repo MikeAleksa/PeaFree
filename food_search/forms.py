@@ -1,4 +1,7 @@
 from django import forms
+from django.db.models import Count
+
+from .models import Food
 
 
 class SearchForm(forms.Form):
@@ -13,5 +16,6 @@ class SearchForm(forms.Form):
     lg = forms.BooleanField(required=False, label='Large Breeds')
     xlg = forms.BooleanField(required=False, label='Giant Breeds')
 
-    # food_forms = Food.objects.order_by('food_form').values_list('food_form', flat=True).distinct()
-    # food_form = forms.ChoiceField(required=False, choices=enumerate(food_forms))
+    food_form = forms.ModelChoiceField(required=False, label='Food Form',
+                                       queryset=Food.objects.values_list('food_form', flat=True).annotate(
+                                           count=Count('food_form')).order_by('-count').distinct())
