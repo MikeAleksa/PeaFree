@@ -65,6 +65,9 @@ class ResultsView(generic.ListView):
                 queryset = queryset.filter(**{str(size + '_breed'): True})
 
         # filter by brand
+        if self.request.GET.get('brand', str()) != str():
+            brand = ' '.join(self.request.GET.get('brand').split('+'))
+            queryset = queryset.filter(brand=brand)
 
         # filter by food form
         if self.request.GET.get('food_form', str()) != str():

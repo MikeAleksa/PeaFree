@@ -20,3 +20,7 @@ class SearchForm(forms.Form):
         '-count')
     all_food_forms = [('', '')] + [(f, f) for f in all_food_forms]
     food_form = forms.ChoiceField(required=False, label='Food Form', choices=all_food_forms)
+
+    all_brands = Food.objects.values_list('brand', flat=True).distinct().order_by('brand')
+    all_brands = [('', '')] + [(b, b) for b in all_brands]
+    brand = forms.ChoiceField(required=False, label='Brand', choices=all_brands)
