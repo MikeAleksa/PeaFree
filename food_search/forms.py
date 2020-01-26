@@ -22,7 +22,7 @@ class SearchForm(forms.Form):
     # food forms
     all_food_forms = Food.objects.values_list('food_form', flat=True).annotate(count=Count('food_form')).order_by(
         '-count')
-    all_food_forms = [('', '')] + [(f, f) for f in all_food_forms]
+    all_food_forms = [('', '')] + [(f, f) for f in all_food_forms][:10]
     food_form = forms.ChoiceField(required=False, label='Food Form', choices=all_food_forms)
 
     # brands
