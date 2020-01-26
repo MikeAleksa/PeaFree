@@ -32,14 +32,19 @@ class ResultsView(generic.ListView):
         form = self.form_class(self.request.GET)
         context['form'] = form
 
-        # get search variables from current page (i.e. from GET request) - for use in pagination, so they aren't lost
+        # get previous search - so they aren't lost during pagination
+        context['search_vars'] = self.get_previous_search_vars()
+
+        return context
+
+    def get_previous_search_vars(self):
+        # get search variables from current page (i.e. from GET request)
         search_vars = []
         if self.request.GET.items():
             for key, value in self.request.GET.items():
                 if key != "page" and value is not None:
                     search_vars.append("{}={}".format(key, '+'.join(value.split())))
-            context['search_vars'] = '&'.join(search_vars)
-        return context
+            return '&'.join(search_vars)
 
     def get_queryset(self):
         queryset = Food.objects
