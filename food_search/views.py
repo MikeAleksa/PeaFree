@@ -11,12 +11,14 @@ from .models import Diet, Food, ScraperUpdates
 class IndexView(generic.TemplateView):
     form_class = SearchForm
     template_name = 'food_search/index.html'
-    extra_context = {
-        'food_count': Food.objects.count(),
-        'good_count': Food.objects.filter(fda_guidelines=1).count(),
-        'update': ScraperUpdates.objects.all().aggregate(Max('date')),
-        'form': form_class()
-    }
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['food_count'] = Food.objects.count()
+        context['good_count'] = Food.objects.filter(fda_guidelines=1).count()
+        context['update'] = ScraperUpdates.objects.all().aggregate(Max('date'))
+        context['form'] = self.form_class()
+        return context
 
 
 class ResultsView(generic.ListView):
