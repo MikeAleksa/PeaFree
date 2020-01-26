@@ -5,7 +5,7 @@ from django.db.models import Max, Q
 from django.views import generic
 
 from .forms import SearchForm
-from .models import Food, ScraperUpdates
+from .models import Diet, Food, ScraperUpdates
 
 
 class IndexView(generic.TemplateView):
@@ -80,6 +80,10 @@ class ResultsView(generic.ListView):
             queryset = queryset.filter(lifestage__contains=lifestage)
 
         # filter by special diet
+        if self.request.GET.get('diet', str()) != str():
+            diet = ' '.join(self.request.GET.get('diet').split('+'))
+            diet_queryset = Diet.objects.filter(diet=diet).values_list('item_num', flat=True)
+            queryset = queryset.filter(item_num__in=diet_queryset)
 
         # return ordered queryset
         return queryset.order_by('name')

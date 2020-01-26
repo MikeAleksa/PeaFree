@@ -1,7 +1,7 @@
 from django import forms
 from django.db.models import Count
 
-from .models import Food
+from .models import Diet, Food
 
 
 class SearchForm(forms.Form):
@@ -38,3 +38,9 @@ class SearchForm(forms.Form):
         for lifestage_split in lifestage.split(', '):
             split_lifestages.add((lifestage_split, lifestage_split))
     lifestage = forms.ChoiceField(required=False, label='Lifestage', choices=sorted(split_lifestages))
+
+    # special diet
+    all_diets = Diet.objects.values_list('diet', flat=True).annotate(count=Count('diet')).order_by(
+        '-count')
+    all_diets = [('', '')] + [(d, d) for d in all_diets]
+    diet = forms.ChoiceField(required=False, label='Special Diet', choices=sorted(all_diets))
