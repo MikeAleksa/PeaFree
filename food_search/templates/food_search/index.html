@@ -72,7 +72,93 @@
                                 <form class="searchform lead text-center" action="{% url 'food_search:results' %}"
                                       method="get"
                                       accept-charset="utf-8" autocomplete="off">
-                                    {{ form.as_p }}
+                                    <div class="fieldWrapper">
+                                        <p class="font-weight-bold">
+                                            {{ form.q.errors }}
+                                            <label for="{{ form.q.id_for_label }}">{{ form.q.label }}</label>
+                                            {{ form.q }}
+                                        </p>
+                                    </div>
+                                    <div class="fieldWrapper">
+                                        <p class="font-weight-bold">
+                                            {{ form.fda.errors }}
+                                            <label for="{{ form.fda.id_for_label }}">{{ form.fda.label }}: </label>
+                                            {{ form.fda }}
+                                        </p>
+                                    </div>
+                                    <div class="fieldWrapper">
+                                        <p class="font-weight-bold">
+                                            {{ form.xsm.errors }}
+                                            <label for="{{ form.xsm.id_for_label }}">{{ form.xsm.label }}: </label>
+                                            {{ form.xsm }}
+                                        </p>
+                                    </div>
+                                    <div class="fieldWrapper">
+                                        <p class="font-weight-bold">
+                                            {{ form.sm.errors }}
+                                            <label for="{{ form.sm.id_for_label }}">{{ form.sm.label }}: </label>
+                                            {{ form.sm }}
+                                        </p>
+                                    </div>
+                                    <div class="fieldWrapper">
+                                        <p class="font-weight-bold">
+                                            {{ form.md.errors }}
+                                            <label for="{{ form.md.id_for_label }}">{{ form.md.label }}: </label>
+                                            {{ form.md }}
+                                        </p>
+                                    </div>
+                                    <div class="fieldWrapper">
+                                        <p class="font-weight-bold">
+                                            {{ form.lg.errors }}
+                                            <label for="{{ form.lg.id_for_label }}">{{ form.lg.label }}: </label>
+                                            {{ form.lg }}
+                                        </p>
+                                    </div>
+                                    <div class="fieldWrapper">
+                                        <p class="font-weight-bold">
+                                            {{ form.xlg.errors }}
+                                            <label for="{{ form.xlg.id_for_label }}">{{ form.xlg.label }}: </label>
+                                            {{ form.xlg }}
+                                        </p>
+                                    </div>
+                                    <dl>
+                                        <div class="fieldWrapper">
+                                            <dt>
+                                                {{ form.food_form.errors }}
+                                                <label for="{{ form.food_form.id_for_label }}">{{ form.food_form.label }}</label>
+                                            </dt>
+                                            <dd>
+                                                {{ form.food_form }}
+                                            </dd>
+                                        </div>
+                                        <div class="fieldWrapper">
+                                            <dt>
+                                                {{ form.brand.errors }}
+                                                <label for="{{ form.brand.id_for_label }}">{{ form.brand.label }}</label>
+                                            </dt>
+                                            <dd>
+                                                {{ form.brand }}
+                                            </dd>
+                                        </div>
+                                        <div class="fieldWrapper">
+                                            <dt>
+                                                {{ form.lifestage.errors }}
+                                                <label for="{{ form.lifestage.id_for_label }}">{{ form.lifestage.label }}</label>
+                                            </dt>
+                                            <dd>
+                                                {{ form.lifestage }}
+                                            </dd>
+                                        </div>
+                                        <div class="fieldWrapper">
+                                            <dt>
+                                                {{ form.diet.errors }}
+                                                <label for="{{ form.diet.id_for_label }}">{{ form.diet.label }}</label>
+                                            </dt>
+                                            <dd>
+                                                {{ form.diet }}
+                                            </dd>
+                                        </div>
+                                    </dl>
                                     <button class="btn btn-primary" type="submit">
                                         <i class="fas fa-check fa-fw"></i>
                                         Submit

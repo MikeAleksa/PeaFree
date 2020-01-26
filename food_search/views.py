@@ -5,20 +5,22 @@ from django.db.models import Max, Q
 from django.views import generic
 
 from .forms import SearchForm
-from .models import Food, ScraperUpdates
+from .models import Diet, Food, ScraperUpdates
 
 
 class IndexView(generic.TemplateView):
+    form_class = SearchForm
     template_name = 'food_search/index.html'
     extra_context = {
         'food_count': Food.objects.count(),
         'good_count': Food.objects.filter(fda_guidelines=1).count(),
         'update': ScraperUpdates.objects.all().aggregate(Max('date')),
-        'form': SearchForm()
+        'form': form_class()
     }
 
 
 class ResultsView(generic.ListView):
+    form_class = SearchForm
     template_name = 'food_search/results.html'
     context_object_name = 'results'
     paginate_by = 30
@@ -26,21 +28,26 @@ class ResultsView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        context['form'] = SearchForm(self.request.GET)
+        # get submitted form
+        form = self.form_class(self.request.GET)
+        context['form'] = form
 
-        # get search variables from current page (i.e. from GET request) - for use in pagination, so they aren't lost
+        # get previous search - so they aren't lost during pagination
+        context['search_vars'] = self.get_previous_search_vars()
+
+        return context
+
+    def get_previous_search_vars(self):
+        # get search variables from current page (i.e. from GET request)
         search_vars = []
         if self.request.GET.items():
             for key, value in self.request.GET.items():
-                if key == "q":
+                if key != "page" and value is not None:
                     search_vars.append("{}={}".format(key, '+'.join(value.split())))
-                elif key != "page":
-                    search_vars.append("{}={}".format(key, value))
-            context['search_vars'] = '&'.join(search_vars)
-        return context
+            return '&'.join(search_vars)
 
     def get_queryset(self):
-        queryset = Food.objects.all()
+        queryset = Food.objects
 
         # if a search query was made, split it into words and filter
         query_list = self.request.GET.get('q', None)
@@ -53,24 +60,30 @@ class ResultsView(generic.ListView):
             queryset = queryset.filter(fda_guidelines=True)
 
         # filter by breed size
-        if self.request.GET.get('xsm', None) == 'on':
-            queryset = queryset.filter(xsm_breed=True)
-        if self.request.GET.get('sm', None) == 'on':
-            queryset = queryset.filter(sm_breed=True)
-        if self.request.GET.get('md', None) == 'on':
-            queryset = queryset.filter(md_breed=True)
-        if self.request.GET.get('lg', None) == 'on':
-            queryset = queryset.filter(lg_breed=True)
-        if self.request.GET.get('xlg', None) == 'on':
-            queryset = queryset.filter(xlg_breed=True)
+        for size in ['xsm', 'sm', 'md', 'lg', 'xlg']:
+            if self.request.GET.get(size, None) == 'on':
+                queryset = queryset.filter(**{str(size + '_breed'): True})
 
         # filter by brand
+        if self.request.GET.get('brand', str()) != str():
+            brand = ' '.join(self.request.GET.get('brand').split('+'))
+            queryset = queryset.filter(brand=brand)
 
         # filter by food form
+        if self.request.GET.get('food_form', str()) != str():
+            form = ' '.join(self.request.GET.get('food_form').split('+'))
+            queryset = queryset.filter(food_form=form)
 
         # filter by lifestage
+        if self.request.GET.get('lifestage', str()) != str():
+            lifestage = ' '.join(self.request.GET.get('lifestage').split('+'))
+            queryset = queryset.filter(lifestage__contains=lifestage)
 
         # filter by special diet
+        if self.request.GET.get('diet', str()) != str():
+            diet = ' '.join(self.request.GET.get('diet').split('+'))
+            diet_queryset = Diet.objects.filter(diet=diet).values_list('item_num', flat=True)
+            queryset = queryset.filter(item_num__in=diet_queryset)
 
         # return ordered queryset
         return queryset.order_by('name')

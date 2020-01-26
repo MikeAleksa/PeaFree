@@ -16,9 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.http import HttpResponseRedirect
 from django.urls import include, path
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('', lambda r: HttpResponseRedirect('search/')),
     path('admin/', admin.site.urls),
-    path('search/', include('food_search.urls'))
+    path('search/', include('food_search.urls')),
+    path('robots.txt', TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
+         name="robots_file"),
 ]
