@@ -9,7 +9,7 @@ vitamins_pattern = re.compile(
     "magnesium|sulfer|sulfur|iron|iodine|selenium|copper|salt|chloride|" +
     "choline|lysine|taurine)", flags=re.I
 )
-bad_ingredients_pattern = re.compile("(pea|bean|lentil|potato|seed|soy)", flags=re.I)
+bad_ingredients_pattern = re.compile("(pea |peas| pea |chickpea|peanut|bean|lentil|potato|seed|soy)", flags=re.I)
 
 
 @register.filter(name='highlight_bad')
