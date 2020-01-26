@@ -9,16 +9,18 @@ from .models import Food, ScraperUpdates
 
 
 class IndexView(generic.TemplateView):
+    form_class = SearchForm
     template_name = 'food_search/index.html'
     extra_context = {
         'food_count': Food.objects.count(),
         'good_count': Food.objects.filter(fda_guidelines=1).count(),
         'update': ScraperUpdates.objects.all().aggregate(Max('date')),
-        'form': SearchForm()
+        'form': form_class()
     }
 
 
 class ResultsView(generic.ListView):
+    form_class = SearchForm
     template_name = 'food_search/results.html'
     context_object_name = 'results'
     paginate_by = 30
@@ -26,21 +28,21 @@ class ResultsView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        context['form'] = SearchForm(self.request.GET)
+        # get submitted form
+        form = self.form_class(self.request.GET)
+        context['form'] = form
 
         # get search variables from current page (i.e. from GET request) - for use in pagination, so they aren't lost
         search_vars = []
         if self.request.GET.items():
             for key, value in self.request.GET.items():
-                if key == "q":
+                if key != "page" and value is not None:
                     search_vars.append("{}={}".format(key, '+'.join(value.split())))
-                elif key != "page":
-                    search_vars.append("{}={}".format(key, value))
             context['search_vars'] = '&'.join(search_vars)
         return context
 
     def get_queryset(self):
-        queryset = Food.objects.all()
+        queryset = Food.objects
 
         # if a search query was made, split it into words and filter
         query_list = self.request.GET.get('q', None)
@@ -60,7 +62,7 @@ class ResultsView(generic.ListView):
         # filter by brand
 
         # filter by food form
-        if self.request.GET.get('food_form', None) != str():
+        if self.request.GET.get('food_form', str()) != str():
             form = ' '.join(self.request.GET.get('food_form').split('+'))
             queryset = queryset.filter(food_form=form)
 

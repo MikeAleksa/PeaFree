@@ -16,6 +16,7 @@ class SearchForm(forms.Form):
     lg = forms.BooleanField(required=False, label='Large Breeds')
     xlg = forms.BooleanField(required=False, label='Giant Breeds')
 
-    food_form = forms.ModelChoiceField(required=False, label='Food Form',
-                                       queryset=Food.objects.values_list('food_form', flat=True).annotate(
-                                           count=Count('food_form')).order_by('-count').distinct())
+    all_food_forms = Food.objects.values_list('food_form', flat=True).annotate(count=Count('food_form')).order_by(
+        '-count')
+    all_food_forms = [('', '')] + [(f, f) for f in all_food_forms]
+    food_form = forms.ChoiceField(required=False, label='Food Form', choices=all_food_forms)
