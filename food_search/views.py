@@ -53,16 +53,9 @@ class ResultsView(generic.ListView):
             queryset = queryset.filter(fda_guidelines=True)
 
         # filter by breed size
-        if self.request.GET.get('xsm', None) == 'on':
-            queryset = queryset.filter(xsm_breed=True)
-        if self.request.GET.get('sm', None) == 'on':
-            queryset = queryset.filter(sm_breed=True)
-        if self.request.GET.get('md', None) == 'on':
-            queryset = queryset.filter(md_breed=True)
-        if self.request.GET.get('lg', None) == 'on':
-            queryset = queryset.filter(lg_breed=True)
-        if self.request.GET.get('xlg', None) == 'on':
-            queryset = queryset.filter(xlg_breed=True)
+        for size in ['xsm', 'sm', 'md', 'lg', 'xlg']:
+            if self.request.GET.get(size, None) == 'on':
+                queryset = queryset.filter(**{str(size + '_breed'): True})
 
         # filter by brand
 
