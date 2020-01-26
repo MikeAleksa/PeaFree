@@ -42,3 +42,7 @@ select {
     max-width: 90%;
     min-width: 50%;
 }
+
+.highlight {
+    background-color: #FFFF00;
+}

@@ -20,14 +20,14 @@ class Food(models.Model):
     lifestage = models.CharField('lifestage', max_length=200, null=True)
     fda_guidelines = models.BooleanField('adheres to FDA guidelines')
 
-    def calculateDiets(self):
+    def calculate_diets(self):
         diets = Diet.objects.all().filter(item_num=self.item_num)
         diets = ', '.join([d.diet for d in diets])
         if diets == str():
             diets = None
         return diets
 
-    def calculateBreeds(self):
+    def calculate_breeds(self):
         sizes = list()
         for size, name in [
             (self.xsm_breed, Food._meta.get_field('xsm_breed').verbose_name),
@@ -41,8 +41,8 @@ class Food(models.Model):
         sizes = ', '.join(sizes)
         return sizes
 
-    diets = property(calculateDiets)
-    breeds = property(calculateBreeds)
+    diets = property(calculate_diets)
+    breeds = property(calculate_breeds)
 
 
 class Diet(models.Model):

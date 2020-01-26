@@ -1,4 +1,5 @@
 {% extends "food_search/subpage_template.html" %}
+{% load food_extras %}
 
 {% block title %}PeaFree! - {{ paginator.count }} Search Results{% endblock %}
 
@@ -206,7 +207,11 @@
                                         <dt>Brand</dt>
                                         <dd> {{ result.brand }}</dd>
                                         <dt>Ingredients</dt>
-                                        <dd>{{ result.ingredients }}</dd>
+                                        <dd>
+                                            {% autoescape off %}
+                                                {{ result.ingredients|highlight_bad }}
+                                            {% endautoescape %}
+                                        </dd>
                                         <dt>Breed Sizes</dt>
                                         <dd>{{ result.breeds }}</dd>
                                         <dt>Food Form</dt>
