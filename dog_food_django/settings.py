@@ -12,22 +12,39 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
+import requests
+
+
+def get_ec2_instance_ip():
+    """
+    Try to obtain the IP address of the current EC2 instance in AWS
+    """
+    try:
+        ip = requests.get(
+            'http://169.254.169.254/latest/meta-data/local-ipv4',
+            timeout=0.01
+        ).text
+    except requests.exceptions.ConnectionError:
+        return None
+    return ip
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = open(os.path.join(BASE_DIR, 'secret-key.cnf')).read()
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+AWS_LOCAL_IP = get_ec2_instance_ip()
+ALLOWED_HOSTS = ['peafree-prod.us-east-1.elasticbeanstalk.com',
+                 'peafree.info',
+                 'www.peafree.info',
+                 AWS_LOCAL_IP]
 
 # Application definition
-
 INSTALLED_APPS = [
     'food_search.apps.FoodSearchConfig',
     'food_search.templatetags.food_extras',
@@ -77,9 +94,11 @@ WSGI_APPLICATION = 'dog_food_django.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'OPTIONS': {
-            'read_default_file': os.path.join(BASE_DIR, 'dogfooddb.cnf'),
-        }
+        'NAME': os.environ['RDS_DB_NAME'],
+        'USER': os.environ['RDS_USERNAME'],
+        'PASSWORD': os.environ['RDS_PASSWORD'],
+        'HOST': os.environ['RDS_HOSTNAME'],
+        'PORT': os.environ['RDS_PORT'],
     }
 }
 
@@ -119,3 +138,16 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+
+# HTTPS and Security Settings
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_REFERRER_POLICY = 'same-origin'
+SECURE_HSTS_SECONDS = 31536000
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_BROWSER_XSS_FILTER = True
+X_FRAME_OPTIONS = 'DENY'
